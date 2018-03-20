@@ -1,0 +1,438 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VorbisEncode</name>
+    </assembly>
+    <members>
+        <member name="T:VorbisEncode.VorbisEncoder">
+            <summary>
+            Allows encoding of raw audio data to the Vorbis codec. Requires libvorbis.dll and libogg.dll
+            </summary>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_info_init(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vi">vorbis_info</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_encode_init(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="vi">vorbis_info</param>
+            <param name="channels"></param>
+            <param name="rate"></param>
+            <param name="max_bitrate"></param>
+            <param name="nominal_bitrate"></param>
+            <param name="min_bitrate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_encode_init_vbr(System.IntPtr,System.Int32,System.Int32,System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="vi">vorbis_info</param>
+            <param name="channels"></param>
+            <param name="rate"></param>
+            <param name="base_quality"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_comment_init(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vc">vorbis_comment</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_comment_add_tag(System.IntPtr,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="vc">vorbis_comment</param>
+            <param name="tag"></param>
+            <param name="contents"></param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis_init(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+            <param name="vi">vorbis_info</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_block_init(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+            <param name="vb">vorbis_block</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_stream_init(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="os">ogg_stream_state</param>
+            <param name="serialno"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis_headerout(System.IntPtr,System.IntPtr,VorbisEncode.ogg_packet@,VorbisEncode.ogg_packet@,VorbisEncode.ogg_packet@)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+            <param name="vc">vorbis_comment</param>
+            <param name="op">ogg_packet</param>
+            <param name="op_comm">ogg_packet</param>
+            <param name="op_code">ogg_packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_stream_packetin(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="os">ogg_stream_state</param>
+            <param name="op">ogg_packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_stream_packetin(System.IntPtr,VorbisEncode.ogg_packet@)">
+            <summary>
+            
+            </summary>
+            <param name="os">ogg_stream_state</param>
+            <param name="op"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_stream_flush(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="os">ogg_stream_state</param>
+            <param name="og">ogg_packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis_buffer(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+            <param name="vals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis_wrote(System.IntPtr,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+            <param name="vals"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis_blockout(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+            <param name="vb">vorbis_block</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vb">vorbis_block</param>
+            <param name="op">ogg_packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_bitrate_addblock(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vb">vorbis_block</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_bitrate_flushpacket(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vd">vorbis_dsp_state</param>
+            <param name="op">ogg_packet</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_stream_pageout(System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="os">ogg_stream_state</param>
+            <param name="og">ogg_page</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_page_eos(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="og">ogg_page</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ogg_stream_clear(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="os">ogg_stream_state</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_block_clear(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vb">vorbis_block</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_dsp_clear(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="v">vorbis_dsp_state</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_comment_clear(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vc">vorbis_comment</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_info_clear(System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vi">vorbis_info</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.#ctor">
+            <summary>
+            Initialize a new instance of the VorbisEncoder class in VBR mode,
+            with none of the parameters filled in.
+            </summary>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.#ctor(System.Int32,System.Int32,System.Single)">
+            <summary>
+            Initialize a new instance of the VorbisEncoder class in VBR mode.
+            </summary>
+            <param name="channels">The number of audio channels. Must be 2 for Stereo, else will default to Mono.</param>
+            <param name="samplerate">The sample rate to encode in. Must match input sample rate.</param>
+            <param name="quality">Determines the quality of the encoding. Should be between 0.0f and 1.0f.</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Initialize a new instance of the VorbisEncoder class in CBR mode.
+            </summary>
+            <param name="channels">The number of audio channels. Must be 2 for Stereo, else will default to Mono.</param>
+            <param name="samplerate">The sample rate to encode in. Must match input sample rate.</param>
+            <param name="bitrate">The bitrate to encode at, in kbps (e.g. 192 for 192kbps).</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.Finalize">
+            <summary>
+            Finalizer. Why does this need a summary?
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.Bitrate">
+            <summary>
+            Current bitrate, if CBR encoding is being used.
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.Quality">
+            <summary>
+            Current quality, if VBR encoding is being used.
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.SampleRate">
+            <summary>
+            Current sample rate of the encoding.
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.Channels">
+            <summary>
+            Current channel count of the encoding. NOTE: Only mono and stereo supported at this time.
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.Mode">
+            <summary>
+            Current encoding bitrate mode. Default is VBR
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.EOS">
+            <summary>
+            True if we have reached the end of a logical stream. Else false.
+            </summary>
+        </member>
+        <member name="P:VorbisEncode.VorbisEncoder.MetaData">
+            <summary>
+            Current MetaData to be used when initializing a vorbis stream. Use <see cref="M:VorbisEncode.VorbisEncoder.ChangeMetaData(System.Collections.Generic.Dictionary{System.String,System.String})"/> to end the current logical stream and update the metadata.
+            </summary>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.Init(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Initialize all ogg and vorbis structs for encoding with the current settings.
+            <see cref="M:VorbisEncode.VorbisEncoder.Close"/> must be called first if you have already created a stream with this object and want to create another.
+            <seealso cref="M:VorbisEncode.VorbisEncoder.Reinit(System.Collections.Generic.Dictionary{System.String,System.String})"/>
+            </summary>
+            <param name="meta">Metadata to be used for the new stream. <seealso cref="M:VorbisEncode.VorbisEncoder.ChangeMetaData(System.Collections.Generic.Dictionary{System.String,System.String})"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.WriteHeader">
+            <summary>
+            Initializes and retrieves the ogg header packets from libogg and libvorbis.
+            Must be called after <see cref="M:VorbisEncode.VorbisEncoder.Init(System.Collections.Generic.Dictionary{System.String,System.String})"/> and before <see cref="M:VorbisEncode.VorbisEncoder.Encode(System.Byte[],System.Byte[],System.Int32)"/>
+            </summary>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.Reinit(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Calls <see cref="M:VorbisEncode.VorbisEncoder.Close"/> and then <see cref="M:VorbisEncode.VorbisEncoder.Init(System.Collections.Generic.Dictionary{System.String,System.String})"/>
+            Can be used instead of vorbis_enc_init always.
+            </summary>
+            <param name="meta">Metadata to be used for the new stream. <seealso cref="M:VorbisEncode.VorbisEncoder.ChangeMetaData(System.Collections.Generic.Dictionary{System.String,System.String})"/></param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.Encode(System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            Encodes the raw audio bytes fed to it to Vorbis.
+            </summary>
+            <param name="pcmBuffer">Array containing the raw audio data</param>
+            <param name="encBuffer">Array to place the encoded audio data into</param>
+            <param name="size">How many bytes in the raw audio buffer to encode</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.Close">
+            <summary>
+            Call all the *_*_clear() methods of libvorbis and libogg to proper clear all structs and memory.
+            </summary>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.EncodeStream(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Encodes all data from stdin to stdout. Probably best used with FileStreams.
+            </summary>
+            <param name="stdin">The stream to read raw audio data from.</param>
+            <param name="stdout">The stream to write encoded audio data to.</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.EncodeStreamAsync(System.IO.Stream,System.IO.Stream)">
+            <summary>
+            Async version of <see cref="M:VorbisEncode.VorbisEncoder.EncodeStream(System.IO.Stream,System.IO.Stream)"/>
+            Encodes all data from stdin to stdout asynchronously. Probably best used with FileStreams.
+            </summary>
+            <param name="stdin">The stream to read raw audio data from.</param>
+            <param name="stdout">The stream to write encoded audio data to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)">
+            <summary>
+            Feed raw audio data to the encoder and output them to the internal buffer.
+            To be used with <see cref="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32)"/> for retrieving the encoded data.
+            </summary>
+            <param name="audioBuffer">Array containing raw audio data.</param>
+            <param name="count">How many bytes of raw audio data to encode.</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32)">
+            <summary>
+            Retrieve encoded audio data from the internal buffer.
+            To be used with <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/> to encode raw data.
+            </summary>
+            <param name="buffer">Array to place encoded data into.</param>
+            <param name="count">How many bytes of data to read from the buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.ChangeMetaData(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Updates <see cref="P:VorbisEncode.VorbisEncoder.MetaData"/> and sets a flag to end the current logical stream and start a new one.
+            </summary>
+            <param name="meta">The metadata to be set</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.SetInternalBufferSize(System.Int64)">
+            <summary>
+            Create the internal buffer with the specified size.
+            Only useful when using <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/> and <see cref="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32)"/>.
+            Must be called before <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/> for the first time, else it will have no effect, because fuck you I don't know how to code.
+            Default size if this is not called is 2x the count passed to <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/>
+            </summary>
+            <param name="size">The size of the buffer. Cannot be changed.</param>
+        </member>
+        <member name="M:VorbisEncode.VorbisEncoder.Dispose">
+            <summary>
+            Fully dispose of the ogg/vorbis structs and all GCHandles.
+            Obviously, you cannot continue to use this instance after this is called.
+            </summary>
+        </member>
+        <member name="T:VorbisEncode.VorbisEncoder.BitrateMode">
+            <summary>
+            Types of bitrate modes for encoding
+            </summary>
+        </member>
+        <member name="F:VorbisEncode.oggpack_buffer.buffer">
+            void*
+        </member>
+        <member name="F:VorbisEncode.oggpack_buffer.ptr">
+            void*
+        </member>
+        <member name="F:VorbisEncode.ogg_page.header">
+            void*
+        </member>
+        <member name="F:VorbisEncode.ogg_page.body">
+            void*
+        </member>
+        <member name="F:VorbisEncode.ogg_stream_state.body_data">
+            void*
+        </member>
+        <member name="F:VorbisEncode.ogg_stream_state.lacing_vals">
+            int*
+        </member>
+        <member name="F:VorbisEncode.ogg_stream_state.granule_vals">
+            ogg_int64_t*
+        </member>
+        <member name="F:VorbisEncode.ogg_packet.packet">
+            void*
+        </member>
+        <member name="F:VorbisEncode.ogg_sync_state.data">
+            void*
+        </member>
+        <member name="F:VorbisEncode.vorbis_info.codec_setup">
+            void*
+        </member>
+        <member name="F:VorbisEncode.vorbis_dsp_state.vi">
+            vorbis_info*
+        </member>
+        <member name="F:VorbisEncode.vorbis_dsp_state.pcm">
+            float**
+        </member>
+        <member name="F:VorbisEncode.vorbis_dsp_state.pcmret">
+            float**
+        </member>
+        <member name="F:VorbisEncode.vorbis_dsp_state.backend_state">
+            void*
+        </member>
+        <member name="F:VorbisEncode.vorbis_block.pcm">
+            float**
+        </member>
+        <member name="F:VorbisEncode.vorbis_block.vd">
+            vorbis_dsp_state*
+        </member>
+        <member name="F:VorbisEncode.vorbis_block.localstore">
+            void*
+        </member>
+        <member name="F:VorbisEncode.vorbis_block.reap">
+            alloc_chain*
+        </member>
+        <member name="F:VorbisEncode.vorbis_block.internal">
+            void*
+        </member>
+        <member name="F:VorbisEncode.alloc_chain.ptr">
+            void*
+        </member>
+        <member name="F:VorbisEncode.alloc_chain.next">
+            alloc_chain*
+        </member>
+        <member name="F:VorbisEncode.vorbis_comment.user_comments">
+            char**
+        </member>
+        <member name="F:VorbisEncode.vorbis_comment.comment_lengths">
+            int*
+        </member>
+        <member name="F:VorbisEncode.vorbis_comment.vendor">
+            char*
+        </member>
+    </members>
+</doc>
