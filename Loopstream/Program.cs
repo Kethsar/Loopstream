@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loopstream
@@ -89,7 +86,7 @@ namespace Loopstream
             }
             else icon = new System.Drawing.Icon(@"..\..\res\loopstream.ico");
 
-            tools = System.Windows.Forms.Application.ExecutablePath;
+            tools = Application.ExecutablePath;
             tools = tools.Substring(tools.Replace('\\', '/').LastIndexOf('/') + 1);
             tools = tools.Split('.')[0];
             tools += "Tools\\";

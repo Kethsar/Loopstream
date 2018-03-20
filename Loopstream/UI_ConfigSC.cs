@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using NAudio.CoreAudioApi;
 using System.Text.RegularExpressions;
@@ -42,7 +39,7 @@ namespace Loopstream
             sb.AppendLine(((LSDevice)gOutS.SelectedItem).id + "\t" + gOutS.SelectedItem);
             sb.AppendLine(((LSDevice)gOneS.SelectedItem).id + "\t" + gOneS.SelectedItem);
             sb.AppendLine(((LSDevice)gTwoS.SelectedItem).id + "\t" + gTwoS.SelectedItem);
-            System.IO.File.WriteAllText("Loopstream.ini", sb.ToString());*/
+            File.WriteAllText("Loopstream.ini", sb.ToString());*/
             apply(true);
         }
 
@@ -176,15 +173,15 @@ namespace Loopstream
 
         string resolveBinary(string exe)
         {
-            if (System.IO.File.Exists(exe))
+            if (File.Exists(exe))
             {
-                return System.IO.Path.GetFullPath(exe);
+                return Path.GetFullPath(exe);
             }
             var vals = Environment.GetEnvironmentVariable("PATH");
             foreach (string path in vals.Split(';'))
             {
-                var fp = System.IO.Path.Combine(path, exe);
-                if (System.IO.File.Exists(fp))
+                var fp = Path.Combine(path, exe);
+                if (File.Exists(fp))
                 {
                     return fp;
                 }
@@ -274,7 +271,7 @@ namespace Loopstream
             }
             tabHeader_MouseDown(tabHeader[0], new MouseEventArgs(System.Windows.Forms.MouseButtons.Left, 1, 20, 10, 0));
 
-            if (!System.IO.File.Exists("Loopstream.ini"))
+            if (!File.Exists("Loopstream.ini"))
             {
                 if (DialogResult.Yes == MessageBox.Show("Since this is your first time,  wanna use the setup wizard?\n\nThis will start your default web browser,\nand you might get a firewall warning", "Loopstream for Dummies", MessageBoxButtons.YesNo))
                 {
@@ -824,7 +821,7 @@ namespace Loopstream
         //NAudio.Wave.Mp3FileReader fx_mp3 = null;
         NAudio.Wave.WaveFileReader fx_wav = null;
         NAudio.Wave.WasapiOut fx_out = null;
-        System.IO.Stream fx_stream = null;
+        Stream fx_stream = null;
         void playFX(LSDevice dev)
         {
             if (unFxTimer == null)
@@ -1696,10 +1693,10 @@ namespace Loopstream
         private void gMake32_Click(object sender, EventArgs e)
         {
             string fo = Application.ExecutablePath;
-            using (System.IO.FileStream i = new System.IO.FileStream(fo, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            using (FileStream i = new FileStream(fo, FileMode.Open, FileAccess.Read))
             {
                 fo = fo.Substring(0, fo.LastIndexOf('.')) + "32.exe";
-                using (System.IO.FileStream o = new System.IO.FileStream(fo, System.IO.FileMode.Create))
+                using (FileStream o = new FileStream(fo, FileMode.Create))
                 {
                     bool first = true;
                     byte[] buf = new byte[8192];
@@ -1731,8 +1728,8 @@ namespace Loopstream
             {
                 try
                 {
-                    System.IO.File.Delete("Loopstream32.exe");
-                    System.IO.File.Move("Loopstream32.exe.exe", "Loopstream32.exe");
+                    File.Delete("Loopstream32.exe");
+                    File.Move("Loopstream32.exe.exe", "Loopstream32.exe");
                     break;
                 }
                 catch { }
@@ -1924,7 +1921,7 @@ namespace Loopstream
                 string chrome2 = chrome.Substring(chrome.LastIndexOf('<'));
                 key = chrome1 + key + chrome2;
 
-                var sr = new System.IO.StringReader(key);
+                var sr = new StringReader(key);
                 var ds = new System.Xml.Serialization.XmlSerializer(typeof(LSSettings.LSMeta));
                 fds = (LSSettings.LSMeta)ds.Deserialize(sr);
             }

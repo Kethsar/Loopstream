@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -42,7 +41,7 @@ namespace Loopstream
                     MessageBox.Show("dfc not found\n\n(ed fucked up)");
                     Program.kill();
                 }
-                if (!System.IO.Path.GetFullPath("asdf").StartsWith(Application.StartupPath))
+                if (!Path.GetFullPath("asdf").StartsWith(Application.StartupPath))
                 {
                     if (Program.args.Length <= 0 || Program.args[0] != "wdfix")
                     {
@@ -53,7 +52,7 @@ namespace Loopstream
                         "===[ what I expected ]=================\n" +
                         Application.StartupPath + "\n\n" +
                         "===[ what I got ]=====================\n" +
-                        System.IO.Path.GetFullPath("what") + "\n\n" +
+                        Path.GetFullPath("what") + "\n\n" +
                         "================================\n" +
                         "[Abort] to stop trying and quit (PRESS ME BRO)\n" +
                         "[Retry] and I'll try to fix it (...again)\n" +

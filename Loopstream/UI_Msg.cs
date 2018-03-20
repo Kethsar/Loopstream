@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Loopstream
@@ -22,8 +17,8 @@ namespace Loopstream
             s_bg = bg;
             sactive = true;
             InitializeComponent();
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            fnt = new System.Drawing.Font(this.Font.FontFamily, 36);
+            FormBorderStyle = FormBorderStyle.None;
+            fnt = new Font(this.Font.FontFamily, 36);
             setMsg(msg);
         }
 

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Loopstream
@@ -180,7 +174,7 @@ namespace Loopstream
 
         private void slider_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 clickTime = DateTime.UtcNow.Ticks / 10000;
                 clickOffset = ((Control)sender).Top + 40;
@@ -189,7 +183,7 @@ namespace Loopstream
                 oldBoost = -1;
                 //gLabel.Text = slideDelta.ToString();
             }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            else if (e.Button == MouseButtons.Right)
             {
                 eventType = EventType.boostLock;
                 boostLock = boost - boostLock < 0.05 ? -1 : boost;
@@ -212,7 +206,7 @@ namespace Loopstream
                 if (fsckoff) return;
                 fsckoff = true;
             }
-            if (e.Button != System.Windows.Forms.MouseButtons.Left)
+            if (e.Button != MouseButtons.Left)
             {
                 fsckoff = false;
                 return;

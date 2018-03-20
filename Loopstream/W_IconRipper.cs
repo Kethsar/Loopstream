@@ -5,7 +5,6 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Runtime.InteropServices;
-using System.Collections;
 
 namespace Loopstream
 {

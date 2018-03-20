@@ -31,7 +31,7 @@ namespace Loopstream
             tag = new LSTD(false, "", "STILL_UNUSED");
             
             auth = string.Format("{0}:{1}", settings.user, settings.pass);
-            auth = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(auth)); 
+            auth = Convert.ToBase64String(Encoding.UTF8.GetBytes(auth)); 
             System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(feeder));
             t.Name = "LSTag_Feeder";
             t.Start();
@@ -54,7 +54,7 @@ namespace Loopstream
             {
                 if (m.src.Trim() == "*")
                 {
-                    int myId = System.Diagnostics.Process.GetCurrentProcess().Id;
+                    int myId = Process.GetCurrentProcess().Id;
                     int[] handles = EnumHandles.Run();
                     foreach (int hWnd in handles)
                     {

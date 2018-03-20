@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 /*
@@ -100,10 +96,10 @@ namespace Loopstream
                                 "working DFC. Would you like to browse for it?\r\n\r\n" + filename,
                                 "Missing dependency", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-                            if (reply == System.Windows.Forms.DialogResult.Cancel)
+                            if (reply == DialogResult.Cancel)
                                 Program.kill();
 
-                            if (reply == System.Windows.Forms.DialogResult.No)
+                            if (reply == DialogResult.No)
                                 continue;
 
                             string ext = filename.Substring(filename.LastIndexOf(".") + 1);
@@ -235,7 +231,7 @@ namespace Loopstream
             assumeConnected = popFilt = false;
 
             z("Layout gManualTags");
-            gManualTags.Font = new System.Drawing.Font(gManualTags.Font.FontFamily, gManualTags.Font.SizeInPoints * 0.8f);
+            gManualTags.Font = new Font(gManualTags.Font.FontFamily, gManualTags.Font.SizeInPoints * 0.8f);
             gManualTags.Text = gManualTags.Text.ToUpper().Replace(" ", "  ");
             gManualTags.Location = new Point(
                 (int)(pictureBox1.Left + (pictureBox1.Width - gManualTags.Width) / 1.85),
@@ -302,7 +298,7 @@ namespace Loopstream
 
         void b_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
                 lock (sfxes)
                     foreach (var n in sfxes)
                         if (n.title == ((Control)sender).Text)
@@ -431,7 +427,7 @@ namespace Loopstream
             inKonami = false;
         }
 
-        void hookskinner(System.Windows.Forms.Control.ControlCollection cc)
+        void hookskinner(Control.ControlCollection cc)
         {
             foreach (Control c in cc)
             {
@@ -1111,7 +1107,7 @@ namespace Loopstream
         long lastclick = 0;
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 long time = DateTime.UtcNow.Ticks / 10000;
                 if (time < lastclick + 1000)
@@ -1194,7 +1190,7 @@ namespace Loopstream
             catch (Exception ex)
             {
                 z("failed, no stream");
-                System.Windows.Forms.MessageBox.Show("Can't let you do that, Dave.\n(please start streaming first)\n\n" + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show("Can't let you do that, Dave.\n(please start streaming first)\n\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -1208,7 +1204,7 @@ namespace Loopstream
             catch (Exception ex)
             {
                 z("failed, no stream");
-                System.Windows.Forms.MessageBox.Show("Can't let you do that, Dave.\n(please start streaming first)\n\n" + ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show("Can't let you do that, Dave.\n(please start streaming first)\n\n" + ex.Message + "\n" + ex.StackTrace);
             }
         }
 
@@ -1218,7 +1214,7 @@ namespace Loopstream
             string ice = Application.ExecutablePath;
             wd = wd.Substring(0, wd.Replace('\\', '/').LastIndexOf('/') + 1);
             ice = ice.Substring(0, ice.LastIndexOf('.')) + "Traktor.exe";
-            if (System.IO.File.Exists(ice))
+            if (File.Exists(ice))
             {
                 z("Found ice, launching");
                 ice = ice.Substring(wd.Length);
@@ -1239,7 +1235,7 @@ namespace Loopstream
 
         private void psfx_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e != null && e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e != null && e.Button == MouseButtons.Right)
             {
                 this.Width -= psfx.Width;
                 psfx.Visible = false;
