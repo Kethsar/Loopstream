@@ -51,6 +51,14 @@
             <param name="tag"></param>
             <param name="contents"></param>
         </member>
+        <member name="M:VorbisEncode.VorbisEncoder.vorbis_comment_add_tag(System.IntPtr,System.IntPtr,System.IntPtr)">
+            <summary>
+            
+            </summary>
+            <param name="vc">vorbis_comment</param>
+            <param name="tag">UTF-8 string as byte array</param>
+            <param name="contents">UTF-8 string as byte array</param>
+        </member>
         <member name="M:VorbisEncode.VorbisEncoder.vorbis_analysis_init(System.IntPtr,System.IntPtr)">
             <summary>
             
@@ -266,6 +274,11 @@
             Current MetaData to be used when initializing a vorbis stream. Use <see cref="M:VorbisEncode.VorbisEncoder.ChangeMetaData(System.Collections.Generic.Dictionary{System.String,System.String})"/> to end the current logical stream and update the metadata.
             </summary>
         </member>
+        <member name="P:VorbisEncode.VorbisEncoder.Buffer">
+            <summary>
+            Internal buffer
+            </summary>
+        </member>
         <member name="M:VorbisEncode.VorbisEncoder.Init(System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Initialize all ogg and vorbis structs for encoding with the current settings.
@@ -319,20 +332,22 @@
             <param name="stdout">The stream to write encoded audio data to.</param>
             <returns></returns>
         </member>
-        <member name="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)">
+        <member name="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32,System.Int32)">
             <summary>
             Feed raw audio data to the encoder and output them to the internal buffer.
-            To be used with <see cref="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32)"/> for retrieving the encoded data.
+            To be used with <see cref="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32,System.Int32)"/> for retrieving the encoded data.
             </summary>
             <param name="audioBuffer">Array containing raw audio data.</param>
+            <param name="offset">Where in the byte array to start copying from</param>
             <param name="count">How many bytes of raw audio data to encode.</param>
         </member>
-        <member name="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32)">
+        <member name="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32,System.Int32)">
             <summary>
             Retrieve encoded audio data from the internal buffer.
-            To be used with <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/> to encode raw data.
+            To be used with <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32,System.Int32)"/> to encode raw data.
             </summary>
             <param name="buffer">Array to place encoded data into.</param>
+            <param name="offset">Where in the byte array to start copying to</param>
             <param name="count">How many bytes of data to read from the buffer.</param>
             <returns></returns>
         </member>
@@ -345,9 +360,9 @@
         <member name="M:VorbisEncode.VorbisEncoder.SetInternalBufferSize(System.Int64)">
             <summary>
             Create the internal buffer with the specified size.
-            Only useful when using <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/> and <see cref="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32)"/>.
-            Must be called before <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/> for the first time, else it will have no effect, because fuck you I don't know how to code.
-            Default size if this is not called is 2x the count passed to <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32)"/>
+            Only useful when using <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32,System.Int32)"/> and <see cref="M:VorbisEncode.VorbisEncoder.GetBytes(System.Byte[],System.Int32,System.Int32)"/>.
+            Must be called before <see cref="M:VorbisEncode.VorbisEncoder.PutBytes(System.Byte[],System.Int32,System.Int32)"/> for the first time, else it will have no effect, because fuck you I don't know how to code.
+            Default size if this is not called is Samplerate * Channels * 10
             </summary>
             <param name="size">The size of the buffer. Cannot be changed.</param>
         </member>

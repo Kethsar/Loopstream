@@ -92,8 +92,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="VorbisEncode, Version=0.1.6652.31493, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="VorbisEncode">
       <HintPath>lib\VorbisEncode.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -217,6 +216,7 @@
     <Compile Include="W_IconRipper.cs" />
     <Compile Include="W_Lame.cs" />
     <Compile Include="W_NPatch.cs" />
+    <Compile Include="W_Vorbis.cs" />
     <Compile Include="Z.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

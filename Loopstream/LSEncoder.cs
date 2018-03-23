@@ -58,7 +58,7 @@ namespace Loopstream
         protected void makeShouter()
         {
             logger.a("make shouter");
-            proc.PriorityClass = System.Diagnostics.ProcessPriorityClass.AboveNormal;
+            if (proc != null) proc.PriorityClass = ProcessPriorityClass.AboveNormal;
 
             if (string.IsNullOrEmpty(settings.host))
             {
@@ -265,13 +265,18 @@ namespace Loopstream
             }
         }
 
+        public void eof()
+        {
+            eat(new byte[] { 0 }, 0);
+        }
+
         int stampee;
         public long[] chunks;
         public long[] stamps;
         protected void reader()
         {
             logger.a("reader thread");
-            System.IO.FileStream m = null;
+            FileStream m = null;
             enc.i.begin = DateTime.UtcNow;
             enc.i.filename = "Loopstream-" +
                 enc.i.begin.ToString("yyyy-MM-dd_HH.mm.ss.") +
@@ -279,9 +284,9 @@ namespace Loopstream
 
             if (dump)
             {
-                m = new System.IO.FileStream(
+                m = new FileStream(
                     enc.i.filename,
-                    System.IO.FileMode.Create);
+                    FileMode.Create);
             }
             long bufSize = settings.samplerate * 10;
             byte[] buffer = new byte[bufSize * 4];
@@ -295,7 +300,8 @@ namespace Loopstream
                     int i = stdout.Read(buffer, 0, 4096);
                     if (m != null)
                     {
-                        logger.a("writing file");
+                        if (i > 0)
+                            logger.a("writing file");
                         m.Write(buffer, 0, i);
                     }
                     try
@@ -328,9 +334,12 @@ namespace Loopstream
                 logger.a("encoder readloop crash");
                 //Program.ni.ShowBalloonTip("an encoder reading thread just crashed\r\n\r\nthought you might want to know");
             }
-            string fn = proc.StartInfo.FileName;
-            fn = fn.Substring(fn.Replace('\\', '/').LastIndexOf('/') + 1).Split('.')[0];
-            Console.WriteLine("shutting down " + fn);
+            if (proc != null)
+            {
+                string fn = proc.StartInfo.FileName;
+                fn = fn.Substring(fn.Replace('\\', '/').LastIndexOf('/') + 1).Split('.')[0];
+                Console.WriteLine("shutting down " + fn);
+            }
             if (m != null) m.Close();
             logger.a("mp3data readloop closed");
         }
@@ -352,7 +361,7 @@ namespace Loopstream
             enc.FIXME_kbps = -1;
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             logger.a("dispose called");
             enc.FIXME_kbps = -1;
@@ -361,7 +370,7 @@ namespace Loopstream
             try
             {
                 logger.a("proc dispose");
-                proc.Kill();
+                if (proc != null) proc.Kill();
             }
             catch
             {

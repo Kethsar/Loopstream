@@ -7,6 +7,8 @@ using System.Text.RegularExpressions;
 
 namespace Loopstream
 {
+    public delegate void TagsChanged(string tags);
+
     class LSTag
     {
         string auth;
@@ -17,6 +19,8 @@ namespace Loopstream
         bool socket_fallback;
         bool haveFailed;
         bool quitting;
+
+        public static event TagsChanged NewTags;
 
         public LSTag(LSSettings set)
         {
@@ -325,6 +329,7 @@ namespace Loopstream
                                 e.enc.FIXME_kbps > 0)
                             {
                                 e.tag = tag.tag;
+                                NewTags(e.tag);
                                 sendTags(e);
                             }
                         }

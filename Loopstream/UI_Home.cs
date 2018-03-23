@@ -72,7 +72,8 @@ namespace Loopstream
             z("dfc core ok");
             string toolsBase = @"..\..\tools\";
             string[] requiredFiles = {
-                "oggenc2.exe",
+                @"32\libvorbis.dll",
+                @"64\libvorbis.dll"
                 "lame.exe",
                 "lame_enc.dll"
             };

@@ -34,6 +34,13 @@ namespace Loopstream
             Logger.pcm.a("dispose called");
             shuttingDown = true;
             quitting = 2 + encoders.Count;
+
+            foreach (LSEncoder enc in encoders)
+            {
+                Logger.pcm.a("eos " + enc.enc.ext);
+                enc.eof();
+            }
+
             System.Threading.Thread.Sleep(1000);
 
             /*for (int a = 0; a < 10; a++)
