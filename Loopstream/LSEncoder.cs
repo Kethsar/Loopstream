@@ -300,8 +300,7 @@ namespace Loopstream
                     int i = stdout.Read(buffer, 0, 4096);
                     if (m != null)
                     {
-                        if (i > 0)
-                            logger.a("writing file");
+                        logger.a("writing file");
                         m.Write(buffer, 0, i);
                     }
                     try
